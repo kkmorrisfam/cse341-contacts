@@ -20,4 +20,12 @@ const initDB = (callback) => {
         });
 }
 
-module.exports = { initDB }
+const getDB = ()=> {
+    if (!dbConnection) {
+        throw Error('Database not initialized.')        
+    }
+
+    return dbConnection;
+};
+
+module.exports = { initDB, getDB}
