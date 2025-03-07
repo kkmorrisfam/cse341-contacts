@@ -1,0 +1,23 @@
+[
+{
+    "firstName":"Mickey", 
+    "lastName":"Mouse", 
+    "email":"mickeymouse@disney.com", 
+    "favoriteColor":"red", 
+    "birthday":"November 28, 1928"
+},
+{
+    "firstName":"Anne", 
+    "lastName":"Shirley", 
+    "email":"anne@greengables.com", 
+    "favoriteColor":"green", 
+    "birthday":"March 5, 1865"
+},
+{
+    "firstName":"Abraham", 
+    "lastName":"Lincoln", 
+    "email":"alincoln@whitehouse.gov", 
+    "favoriteColor":"brown", 
+    "birthday":"February 12, 1809"
+}
+]

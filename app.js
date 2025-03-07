@@ -7,7 +7,14 @@ const port = process.env.PORT || 3000;
 app.use("/", require("./routes"));
 
 //initialize mongoDB
-//add connection string to .env file
-app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
-});
+mongoDB.initDB((err)=> {
+  if(err) {
+    console.log("Initialize DB error", err)
+  } else {
+    app.listen(port, () => {
+      console.log(`Listening on port ${port}...`);
+    });
+    
+  }
+})
+
