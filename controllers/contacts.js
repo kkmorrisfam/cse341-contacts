@@ -9,7 +9,7 @@ const getAll = async (req, res) => {
     });
 };
 
-// Do I want params or query?
+// Do I want params or query? Also, should I use .findOne()?
 const getOne = async (req, res) => {
     const contactId = new ObjectId(req.params.id);
     const result = await mongoDB.getDB().db().collection('contacts').find({_id:contactId})  //can add database name in db() if not in MONGO_URI string
