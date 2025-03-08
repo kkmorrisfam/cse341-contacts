@@ -7,12 +7,11 @@ const getAll = async (req, res) => {
         res.setHeader('Content-type', 'application/json');
         res.status(200).json(contacts);
     });
-
 };
 
-// Not working for One 
+// Do I want params or query?
 const getOne = async (req, res) => {
-    const contactId = new ObjectId(req.param.id);
+    const contactId = new ObjectId(req.params.id);
     const result = await mongoDB.getDB().db().collection('contacts').find({_id:contactId})  //can add database name in db() if not in MONGO_URI string
     // console.log(result)
     result.toArray()
