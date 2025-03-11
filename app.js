@@ -1,9 +1,13 @@
 const express = require("express");
-const app = express();
 const mongoDB = require("./db/database");
+const swaggerUI = require('swagger-ui-express');
+const swaggerDocument = require('./swagger-output.json')
 
+const app = express();
 const port = process.env.PORT || 3000;
 
+//each time I create or change a route, I need to run "node swagger.js" in the terminal
+app.use('/api-docs',swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/", require("./routes"));
 
 //initialize mongoDB

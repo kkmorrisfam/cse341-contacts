@@ -17,7 +17,7 @@ const getOne = async (req, res) => {
     result.toArray()
     .then ((contacts) => {
         res.setHeader('Content-type', 'application/json');
-        res.status(200).json(contacts[0]);
+        res.status(200).json(contacts[0]); //works with or without the [0]
     })
     .catch(error => {
         console.log("error getOne", error);
