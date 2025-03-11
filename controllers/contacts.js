@@ -1,6 +1,6 @@
 const mongoDB = require("../db/database");
-const ObjectId = require("mongodb").ObjectId; //unique id that mongo db assigns to each entry - primary key
-
+// const ObjectId = require("mongodb").ObjectId; //unique id that mongo db assigns to each entry - primary key
+const { ObjectId } = require("mongodb");
 // Get all contacts route
 
 const getAll = async (req, res) => {
@@ -42,12 +42,11 @@ const createContact = async (req, res) => {
     favoriteColor: req.body.favoriteColor,
     birthday: req.body.birthday,
   };
-  const contactId = new ObjectId(req.params.id);
   const response = await mongoDB
     .getDB()
     .db()
     .collection("contacts")
-    .insertOne({ _id: contactId }, contact);
+    .insertOne(contact);
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
@@ -59,6 +58,26 @@ const createContact = async (req, res) => {
 // Put Route, Update a contact, return status code
 const updateContact = async (req, res) => {
   console.log("update contact");
+  const contactId = new ObjectId(req.params.id);
+  const contact = {
+    firstName: req.body.firsName,
+    lastName: req.body.lastName,
+    email: req.body.email,
+    favoriteColor: req.body.favoriteColor,
+    birthday: req.body.birthday,
+  };
+
+  const response = await mongoDB
+    .getDB()
+    .db()
+    .collection("contacts")
+    .replaceOne({ _id: contactId }, contact);
+  if (response.modifiedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error) ||
+      "Some error occurred while trying to update a contact";
+  }
 };
 
 // Delete Route, delete a contact, return status code
