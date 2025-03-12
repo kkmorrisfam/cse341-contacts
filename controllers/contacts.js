@@ -1,6 +1,6 @@
 const mongoDB = require("../db/database");
-// const ObjectId = require("mongodb").ObjectId; //unique id that mongo db assigns to each entry - primary key
-const { ObjectId } = require("mongodb");
+const ObjectId = require("mongodb").ObjectId; //unique id that mongo db assigns to each entry - primary key
+// const { ObjectId } = require("mongodb");
 // Get all contacts route
 
 const getAll = async (req, res) => {
@@ -36,7 +36,7 @@ const getOne = async (req, res) => {
 const createContact = async (req, res) => {
   console.log("create contact");
   const contact = {
-    firstName: req.body.firsName,
+    firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     favoriteColor: req.body.favoriteColor,
@@ -47,11 +47,11 @@ const createContact = async (req, res) => {
     .db()
     .collection("contacts")
     .insertOne(contact);
-  if (response.modifiedCount > 0) {
-    res.status(204).send();
+  if (response.acknowledged) {
+    res.status(201).send();
   } else {
     res.status(500).json(response.error) ||
-      "Some error occurred while trying to update a contact";
+      "Some error occurred while trying to create a contact";
   }
 };
 
@@ -60,7 +60,7 @@ const updateContact = async (req, res) => {
   console.log("update contact");
   const contactId = new ObjectId(req.params.id);
   const contact = {
-    firstName: req.body.firsName,
+    firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
     favoriteColor: req.body.favoriteColor,
@@ -71,7 +71,7 @@ const updateContact = async (req, res) => {
     .getDB()
     .db()
     .collection("contacts")
-    .replaceOne({ _id: contactId }, contact);
+    .replaceOne({ _id: contactId }, { $set: contact });
   if (response.modifiedCount > 0) {
     res.status(204).send();
   } else {
@@ -83,6 +83,18 @@ const updateContact = async (req, res) => {
 // Delete Route, delete a contact, return status code
 const deleteContact = async (req, res) => {
   console.log("delete contact");
+  const contactId = new ObjectId(req.params.id);
+  const response = await mongoDB
+    .getDB()
+    .db()
+    .collection("contacts")
+    .deleteOne({ _id: contactId }, true);
+  if (response.deletedCount > 0) {
+    res.status(204).send();
+  } else {
+    res.status(500).json(response.error) ||
+      "Some error occurred while trying to delete a contact";
+  }
 };
 
 module.exports = {
