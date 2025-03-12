@@ -10,9 +10,10 @@ const port = process.env.PORT || 3000;
 
 //each time I create or change a route, I need to run "node swagger.js" in the terminal "npm run swagger"
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
+app.use(bodyParser.json());
 
 app.use("/", require("./routes"));
-app.use(bodyParser.json());
+
 
 //initialize mongoDB
 mongoDB.initDB((err) => {
