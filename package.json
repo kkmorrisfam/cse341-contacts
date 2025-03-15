@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon app.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "swagger":"node ./swagger.js"
   },
   "author": "",
   "license": "ISC",

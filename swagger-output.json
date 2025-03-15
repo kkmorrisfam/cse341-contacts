@@ -6,6 +6,16 @@
     "version": "1.0.0"
   },
   "host": "localhost:3000",
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Server"
+    },
+    {
+      "url": "https://cse341-contacts-dqby.onrender.com",
+      "description": "Render Server"
+    }
+  ],
   "basePath": "/",
   "schemes": [
     "http",
