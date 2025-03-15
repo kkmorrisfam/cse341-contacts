@@ -5,7 +5,7 @@ const doc = {
     title: "My API",
     description: "API Documentation for Contacts Project Week 2",
   },
-  // host: "localhost:3000",
+  host:"",
   servers: [
     { url: "http://localhost:3000", description: "Local Server" },
     { url: "https://cse341-contacts-dqby.onrender.com", description: "Render Server" }

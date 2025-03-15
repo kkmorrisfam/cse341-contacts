@@ -5,7 +5,7 @@
     "description": "API Documentation for Contacts Project Week 2",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "",
   "servers": [
     {
       "url": "http://localhost:3000",
