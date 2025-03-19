@@ -1,0 +1,30 @@
+@hostname = http://localhost:3000/ 
+@userid = 67ca34ab77884d2853ded75c
+
+get {{hostname}}
+
+###
+
+post {{hostname}}
+Content-Type: application/json
+
+{
+ "firstName": "Mickey",
+  "lastName": "Mouse",
+  "email": "mickeymouse@disney.com",
+  "favoriteColor": "red",
+  "birthday": "November 28, 1928"
+  }
+
+###
+
+put {{hostname}}/67d4f75623da9bd5087eb199
+Content-Type: application/json
+
+{
+  "firstName": "Carol",
+  "lastName": "Holland",
+  "email": "cholland@pirates.com",
+  "favoriteColor": "red",
+  "birthday": "January 27, 2001"
+}
