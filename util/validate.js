@@ -3,8 +3,9 @@ const { check, validationResult } = require("express-validator");
 const validate = {};
 
 validate.checkRules = () => {
+  console.log("inside checkRules");
   return [
-    check("firstName").trim().notEmpty().withMessage("First name is required"),
+    check("firstName", "First name is required").trim().notEmpty(),
     check("lastName").trim().notEmpty().withMessage("Last name is required"),
     check("email").trim().isEmail().withMessage("Invalid email addrses"),
     check("favoriteColor")
@@ -20,7 +21,7 @@ validate.checkRules = () => {
 };
 
 validate.checkErrors = (req, res, next) => {
-  // console.log("inside validate");
+  console.log("inside validate");
   const errors = validationResult(req);
   //if errors is not empty
   if (!errors.isEmpty()) {
